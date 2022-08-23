@@ -20,10 +20,10 @@ export class PlayerDataService implements OnInit {
 			player => this.removeProfile( player ),
 		);
 
-		Functions.getData.setCallback( player => {
+		Functions.getData.setCallback( ( player, data ) => {
 			const profile = this.profiles.get( player );
 
-			return profile?.Data ?? false;
+			return profile?.Data?.[data] ?? false;
 		} );
 	}
 
@@ -62,9 +62,15 @@ export class PlayerDataService implements OnInit {
 				Events.modifiedTaps( player, value )
 			}
 
+			const modifyGems = ( value: number ) => {
+				profile.Data.gems = value
+				Events.modifiedGems( player, value )
+			}
+
 			return {
 				data: profile.Data,
 				modifyTaps: modifyTaps,
+				modifyGems: modifyGems,
 			};
 		}
 

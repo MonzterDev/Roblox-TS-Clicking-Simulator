@@ -7,7 +7,7 @@ interface ServerEvents {
 }
 
 interface ServerFunctions {
-    getData: () => PlayerData | false
+    getData: ( data: keyof PlayerData ) => PlayerData[keyof PlayerData] | false
     addPoints: () => PointsRequestResponse | false
 }
 
@@ -15,6 +15,7 @@ interface ClientEvents {
     rewardedTaps ( amount: number ): void
 
     modifiedTaps ( amount: number ): void
+    modifiedGems ( amount: number ): void
 }
 
 interface ClientFunctions { }
