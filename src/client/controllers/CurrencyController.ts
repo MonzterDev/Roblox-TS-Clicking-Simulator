@@ -23,6 +23,7 @@ export class PointsController implements OnInit {
 
         Events.modifiedTaps.connect( ( amount ) => this.updateTapsLabel( amount ) )
         Events.modifiedGems.connect( ( amount ) => this.updateGemsLabel( amount ) )
+        Events.rewardedTaps.connect( ( amount ) => this.rewardTaps( amount ) )
     }
 
     private updateTapsLabel ( amount: number ) {
@@ -31,5 +32,11 @@ export class PointsController implements OnInit {
 
     private updateGemsLabel ( amount: number ) {
         this.gemsLabel.Text = `💎 ${amount}`
+    }
+
+    private rewardTaps ( amount: number ) {
+        this.tapsNotification.Text = `+${amount}`
+        this.tapsNotification.Visible = true
+        task.delay( 3, () => this.tapsNotification.Visible = false )
     }
 }

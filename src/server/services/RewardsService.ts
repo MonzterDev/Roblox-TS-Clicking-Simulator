@@ -10,11 +10,10 @@ export class RewardsService {
         const profile = this.playerDataService.getProfile( player )
         if ( !profile ) return
 
-        print( amount, profile.data.taps )
-        amount += profile.data.taps
-        print( amount )
-        profile.modifyTaps( amount )
         Events.rewardedTaps.fire( player, amount )
+
+        amount += profile.data.taps
+        profile.modifyTaps( amount )
     }
 
     public rewardGems ( player: Player, amount: number ) {
