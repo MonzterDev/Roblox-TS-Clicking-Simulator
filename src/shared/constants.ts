@@ -2,7 +2,13 @@ import { PlayerData } from "./types/PlayerData";
 
 export const DEFAULT_PLAYER_DATA: PlayerData = {
     taps: 0,
-    gems: 0
+    gems: 0,
+    settings: {
+        music: true,
+        sound_effects: true
+    }
 }
 
-export const LONG_BLUE_IMG = "rbxassetid://10677836504"
+export const IMAGE_STRING_PREFIX = "rbxassetid//"
+export const ON_BUTTON = "rbxassetid://10708452023"
+export const OFF_BUTTON = "rbxassetid://10708452021"

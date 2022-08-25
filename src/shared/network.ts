@@ -1,9 +1,11 @@
 import { Networking } from "@flamework/networking";
-import { PlayerData } from "./types/PlayerData";
+import { PlayerData, Settings } from "./types/PlayerData";
 import type { PointsRequestResponse } from "server/services/PointsService"
 
 interface ServerEvents {
     tap (): void
+
+    changeSetting ( setting: keyof Settings, value: Settings[keyof Settings] ): void
 }
 
 interface ServerFunctions {
