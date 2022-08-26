@@ -9,7 +9,7 @@ interface ServerEvents {
 }
 
 interface ServerFunctions {
-    getData: ( data: keyof PlayerData ) => PlayerData[keyof PlayerData] | false
+    getData: <k extends keyof PlayerData>( data: k ) => PlayerData[k]
     addPoints: () => PointsRequestResponse | false
 }
 
@@ -20,7 +20,9 @@ interface ClientEvents {
     modifiedGems ( amount: number ): void
 }
 
-interface ClientFunctions { }
+interface ClientFunctions {
+    getData: <k extends keyof PlayerData>( data: k ) => PlayerData[k]
+}
 
 export const GlobalEvents = Networking.createEvent<ServerEvents, ClientEvents>();
 export const GlobalFunctions = Networking.createFunction<ServerFunctions, ClientFunctions>();

@@ -8,6 +8,11 @@ import { ButtonsGui, LeftButtons } from "./Guis";
 import { CloseGui } from "./utils/Close";
 import { DisplayGui } from "./utils/Display";
 
+
+function instanceOf ( object: any ): object is Settings {
+    return 'music' in object
+}
+
 @Controller()
 export class SettingsController implements OnInit {
 
@@ -23,7 +28,7 @@ export class SettingsController implements OnInit {
         CloseGui( this.gui )
 
         Functions.getData( "settings" ).andThen( ( settingTable ) => {
-            if ( typeIs( settingTable, "table" ) ) {
+            if ( instanceOf( settingTable ) ) {
                 for ( const [setting, value] of pairs( settingTable ) ) {
                     this.generateTemplate( setting, value )
                 }
